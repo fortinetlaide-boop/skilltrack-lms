@@ -16,10 +16,12 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
           script: |
-            cd /home/ubuntu/skilltrack-lms
+            set -e
+            cd /home/${{ secrets.EC2_USER }}/skilltrack-lms
             git pull origin main
             cd backend
-            npm install --production
+            npm ci --omit=dev
             pm2 restart skilltrack-backend || pm2 start server.js --name skilltrack-backend
-
+            pm2 save

@@ -19,7 +19,7 @@ app.use("/api/courses", courseRoutes);
 
 // Test route
 app.get("/", (req, res) => {
-  res.json({ message: "SkillTrack LMS API is running 🚀 Laide did it!" });
+  res.json({ message: "SkillTrack LMS API is running 🚀 Laide did it again!" });
 });
 
 export default app;
